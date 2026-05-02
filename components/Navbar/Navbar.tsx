@@ -95,7 +95,6 @@ export default function Navbar() {
           left: "50%",
           transform: "translateX(-50%)",
           zIndex: 1000,
-          // Largeur adaptative selon le nombre de liens
           width: "min(680px, calc(100vw - 48px))",
           height: "52px",
           pointerEvents: "auto",
@@ -108,7 +107,6 @@ export default function Navbar() {
             inset: 0,
             borderRadius: "999px",
             filter: "url(#liquid-glass-filter)",
-            // Fond semi-transparent qui capte le vrai fond de page
             background: "rgba(255, 255, 255, 0.06)",
             backdropFilter: "blur(18px) saturate(180%) brightness(1.1)",
             WebkitBackdropFilter: "blur(18px) saturate(180%) brightness(1.1)",

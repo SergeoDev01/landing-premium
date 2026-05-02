@@ -65,6 +65,10 @@ const config: Config = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      fontFamily: {
+        gentasi: ["var(--font-gentasi)", "sans-serif"],
+        moduline: ["var(--font-moduline)", "sans-serif"],
+      },
     },
   },
   plugins: [tailwindcssAnimate],

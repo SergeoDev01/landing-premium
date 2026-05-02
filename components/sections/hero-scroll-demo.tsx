@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef } from "react";
 import { ContainerScroll } from "@/components/ui/container-scroll-animation";
+import Carousel from "@/components/ui/carousel";
 
 const FRAME_COUNT = 21;
 
@@ -132,7 +133,7 @@ const CanvasScrubber = ({ registerCallback }: CanvasScrubberProps) => {
 
 export function HeroScrollDemo() {
   return (
-    <section className="relative">
+    <section className="relative overflow-x-clip">
       <ContainerScroll titleComponent={null}>
         {(registerCallback) => (
           <CanvasScrubber
@@ -142,6 +143,20 @@ export function HeroScrollDemo() {
           />
         )}
       </ContainerScroll>
+
+      {/* Section Carrousel */}
+      <div className="relative z-20 mx-auto flex w-full max-w-7xl justify-center px-4 pb-32 pt-10">
+        <div style={{ height: '500px', position: 'relative', display: 'flex', justifyContent: 'center', width: '100%' }}>
+          <Carousel
+            baseWidth={800}
+            autoplay={true}
+            autoplayDelay={2000}
+            pauseOnHover={true}
+            loop={true}
+            round={false}
+          />
+        </div>
+      </div>
     </section>
   );
 }

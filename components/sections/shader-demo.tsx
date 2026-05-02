@@ -26,7 +26,7 @@ export function ShaderDemo() {
             <div className="flex min-h-[96px] w-full items-center justify-center md:min-h-[156px]">
               <BrandSequenceText
                 startDelayMs={2000}
-                className="px-2 text-center font-mono text-[clamp(1.5rem,6vw,4.4rem)] font-bold uppercase leading-none tracking-[-0.01em] text-primary [font-variant-ligatures:none] drop-shadow-[0_0_20px_hsl(var(--primary)/0.3)]"
+                className="px-2 text-center font-moduline text-[clamp(1.5rem,6vw,4.4rem)] font-bold uppercase leading-none tracking-[-0.01em] text-primary [font-variant-ligatures:none] drop-shadow-[0_0_20px_hsl(var(--primary)/0.3)]"
                 cursorClassName="text-primary"
               />
             </div>

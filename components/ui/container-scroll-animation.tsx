@@ -36,7 +36,7 @@ export const ContainerScroll = ({
 
     // Configuration initiale de la carte en 3D
     gsap.set(card, {
-      rotateX: 32,
+      rotateX: 50,
       scale: 0.88,
       y: 80,
       transformOrigin: "center top",
@@ -104,7 +104,7 @@ export const ContainerScroll = ({
           <div className="mx-auto max-w-5xl text-center">{titleComponent}</div>
         )}
 
-        <div ref={triggerRef} className="mx-auto -mt-28 w-2/3 aspect-[16/10] md:-mt-36" style={{ transformStyle: "preserve-3d" }}>
+        <div ref={triggerRef} className="mx-auto -mt-28 w-[85%] max-w-6xl aspect-[16/10] md:-mt-36" style={{ transformStyle: "preserve-3d" }}>
           <div
             ref={cardRef}
             className="h-full w-full rounded-[30px] bg-card/70 p-2 shadow-2xl backdrop-blur md:p-6"

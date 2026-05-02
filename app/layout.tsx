@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
+
 import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 
@@ -12,6 +14,21 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+
+const gentasiFont = localFont({
+  src: "../public/fonts/gentasi.otf",
+  variable: "--font-gentasi",
+});
+
+const modulineFont = localFont({
+  src: "../public/fonts/moduline.otf",
+  variable: "--font-moduline",
+});
+
+
+
+
+
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -27,7 +44,7 @@ export default function RootLayout({
     <html
       lang="fr"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${gentasiFont.variable} ${modulineFont.variable} h-full antialiased font-gentasi`}
     >
       <body className="flex min-h-full flex-col" suppressHydrationWarning>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
