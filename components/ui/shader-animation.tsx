@@ -5,15 +5,15 @@ import * as THREE from "three";
 import type { Camera, Scene, WebGLRenderer, Vector2, Color } from "three";
 
 type SceneState = {
-  camera: Camera;
-  scene: Scene;
-  renderer: WebGLRenderer;
+  camera: THREE.Camera;
+  scene: THREE.Scene;
+  renderer: THREE.WebGLRenderer;
   uniforms: {
     time: { value: number };
-    resolution: { value: Vector2 };
-    color: { value: Color };
+    resolution: { value: THREE.Vector2 };
+    color: { value: THREE.Color };
     intensity: { value: number };
-    baseColor: { value: Color };
+    baseColor: { value: THREE.Color };
   };
   animationId: number;
 };
