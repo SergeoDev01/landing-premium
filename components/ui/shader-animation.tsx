@@ -2,18 +2,18 @@
 
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
-import type { Camera, Scene, WebGLRenderer, Vector2, Color } from "three";
+import type { PerspectiveCamera, OrthographicCamera, Scene, WebGLRenderer, Vector2, Color } from "three";
 
 type SceneState = {
-  camera: THREE.Camera;
-  scene: THREE.Scene;
-  renderer: THREE.WebGLRenderer;
+  camera: PerspectiveCamera | OrthographicCamera;
+  scene: Scene;
+  renderer: WebGLRenderer;
   uniforms: {
     time: { value: number };
-    resolution: { value: THREE.Vector2 };
-    color: { value: THREE.Color };
+    resolution: { value: Vector2 };
+    color: { value: Color };
     intensity: { value: number };
-    baseColor: { value: THREE.Color };
+    baseColor: { value: Color };
   };
   animationId: number;
 };
@@ -61,7 +61,7 @@ export function ShaderAnimation({ startDelayMs = 0 }: { startDelayMs?: number })
       }
     `;
 
-    const camera = new THREE.Camera();
+    const camera = new THREE.PerspectiveCamera();
     camera.position.z = 1;
 
     const scene = new THREE.Scene();
