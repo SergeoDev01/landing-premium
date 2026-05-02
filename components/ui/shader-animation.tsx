@@ -2,17 +2,18 @@
 
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
+import type { Camera, Scene, WebGLRenderer, Vector2, Color } from "three";
 
 type SceneState = {
-  camera: THREE.Camera;
-  scene: THREE.Scene;
-  renderer: THREE.WebGLRenderer;
+  camera: Camera;
+  scene: Scene;
+  renderer: WebGLRenderer;
   uniforms: {
     time: { value: number };
-    resolution: { value: THREE.Vector2 };
-    color: { value: THREE.Color };
+    resolution: { value: Vector2 };
+    color: { value: Color };
     intensity: { value: number };
-    baseColor: { value: THREE.Color };
+    baseColor: { value: Color };
   };
   animationId: number;
 };
