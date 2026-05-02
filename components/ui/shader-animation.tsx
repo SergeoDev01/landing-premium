@@ -1,8 +1,17 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import * as THREE from "three";
 import type { PerspectiveCamera, OrthographicCamera, Scene, WebGLRenderer, Vector2, Color } from "three";
+import { 
+  PerspectiveCamera as PerspectiveCameraClass,
+  Scene as SceneClass,
+  WebGLRenderer as WebGLRendererClass,
+  Vector2 as Vector2Class,
+  Color as ColorClass,
+  PlaneGeometry,
+  ShaderMaterial,
+  Mesh
+} from "three";
 
 type SceneState = {
   camera: PerspectiveCamera | OrthographicCamera;
@@ -61,30 +70,30 @@ export function ShaderAnimation({ startDelayMs = 0 }: { startDelayMs?: number })
       }
     `;
 
-    const camera = new THREE.PerspectiveCamera();
+    const camera = new PerspectiveCameraClass();
     camera.position.z = 1;
 
-    const scene = new THREE.Scene();
-    const geometry = new THREE.PlaneGeometry(2, 2);
+    const scene = new SceneClass();
+    const geometry = new PlaneGeometry(2, 2);
 
     const uniforms: SceneState["uniforms"] = {
       time: { value: 0.0 },
-      resolution: { value: new THREE.Vector2() },
-      color: { value: new THREE.Color("#0033ff") },
+      resolution: { value: new Vector2Class() },
+      color: { value: new ColorClass("#0033ff") },
       intensity: { value: 0.0 },
-      baseColor: { value: new THREE.Color("#020617") },
+      baseColor: { value: new ColorClass("#020617") },
     };
 
-    const material = new THREE.ShaderMaterial({
+    const material = new ShaderMaterial({
       uniforms,
       vertexShader,
       fragmentShader,
     });
 
-    const mesh = new THREE.Mesh(geometry, material);
+    const mesh = new Mesh(geometry, material);
     scene.add(mesh);
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    const renderer = new WebGLRendererClass({ antialias: true, alpha: true });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     container.appendChild(renderer.domElement);
 
