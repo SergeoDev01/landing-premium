@@ -42,36 +42,43 @@ export const ContainerScroll = ({
       transformOrigin: "center top",
     });
 
-    // Phase 1 : Redressement progressif avec rebond élastique 
+    // Phase 1 : Redressement fluide et pondéré
     gsap.to(card, {
       rotateX: 0,
       scale: 1,
       y: 0,
-      ease: "back.out(1.5)", // Restauration de l'effet 3D d'origine
+      ease: "power2.out", 
+      force3D: true,
       scrollTrigger: {
         trigger: triggerBox,
         start: "top bottom", 
         end: "center center", 
-        scrub: 1.2,
+        scrub: 1, // Lissage pour une fluidité maximale
         invalidateOnRefresh: true,
       },
     });
 
-    // Phase 2 : Pin de l'écran (Figé au milieu exact de l'écran)
-    ScrollTrigger.create({
-      trigger: triggerBox, // On utilise la boîte statique pour éviter les sursauts
-      start: "center center", 
-      end: "+=100%", // Scroll plus court pour coller aux 20 images
-      pin: section, 
-      pinSpacing: true, 
-      anticipatePin: 1, // Empêche le sursaut lors du pin ou unpin
-      invalidateOnRefresh: true,
-      onUpdate: (self) => {
-        progressCallbackRef.current?.(self.progress);
+    // Phase 2 : Pin de l'écran avec proxy de progression lissé
+    const progressProxy = { value: 0 };
+    gsap.to(progressProxy, {
+      value: 1,
+      ease: "none",
+      onUpdate: () => {
+        // On envoie la valeur lissée au canvas
+        progressCallbackRef.current?.(progressProxy.value);
       },
+      scrollTrigger: {
+        trigger: triggerBox,
+        start: "center center", 
+        end: "+=100%", 
+        pin: section, 
+        pinSpacing: true, 
+        scrub: 1, // Lissage (inertia) de 1 seconde pour une fluidité maximale
+        anticipatePin: 1,
+      }
     });
 
-    // Phase 2b : Pin du shader (sans affecter le layout)
+    // Phase 2b : Pin du shader optionnel
     const shaderWrapper = document.querySelector("#shader-wrapper");
     if (shaderWrapper) {
       ScrollTrigger.create({
@@ -79,9 +86,11 @@ export const ContainerScroll = ({
         start: "center center",
         end: "+=100%",
         pin: shaderWrapper,
-        pinSpacing: false, // Empêche tout décalage du DOM
+        pinSpacing: false,
       });
     }
+
+    ScrollTrigger.refresh();
 
     ScrollTrigger.refresh();
   }, { scope: sectionRef });
@@ -94,7 +103,7 @@ export const ContainerScroll = ({
   return (
     <div
       ref={sectionRef}
-      className="relative flex w-full h-[60rem] items-center justify-center overflow-x-clip px-4 md:h-[80rem] md:px-10"
+      className="relative flex w-full h-[45rem] items-center justify-center overflow-x-clip px-4 md:h-[65rem] md:px-10"
     >
       <div
         className="relative mx-auto w-full max-w-[1800px] py-0 md:py-8"

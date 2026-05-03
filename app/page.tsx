@@ -35,7 +35,7 @@ export default function Home() {
         <ShaderDemo />
       </div>
 
-      <div id="portfolio" className="relative z-20 -mt-[48vh] scroll-mt-28">
+      <div id="portfolio" className="relative z-20 -mt-[33vh] scroll-mt-28">
         <HeroScrollDemo />
       </div>
 

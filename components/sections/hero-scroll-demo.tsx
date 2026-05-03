@@ -2,7 +2,8 @@
 
 import React, { useEffect, useRef } from "react";
 import { ContainerScroll } from "@/components/ui/container-scroll-animation";
-import Carousel from "@/components/ui/carousel";
+import Carousel, { CarouselItem } from "@/components/ui/carousel";
+import Image from "next/image";
 
 const FRAME_COUNT = 21;
 
@@ -72,11 +73,19 @@ const CanvasScrubber = ({ registerCallback }: CanvasScrubberProps) => {
     };
   }, []);
 
+  const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
+
   // Enregistrement du callback
   useEffect(() => {
+
     const drawFrame = (progress: number) => {
       const canvas = canvasRef.current;
       if (!canvas) return;
+
+      if (!ctxRef.current) {
+        ctxRef.current = canvas.getContext("2d");
+      }
+      const ctx = ctxRef.current;
 
       const frameIdx = Math.min(
         FRAME_COUNT - 1,
@@ -107,7 +116,6 @@ const CanvasScrubber = ({ registerCallback }: CanvasScrubberProps) => {
 
       if (lastDrawnRef.current === useIdx) return;
       const img = imagesRef.current[useIdx];
-      const ctx = canvas.getContext("2d");
       if (!ctx || !img) return;
 
       if (!canvas.width || canvas.width === 300) {
@@ -115,6 +123,7 @@ const CanvasScrubber = ({ registerCallback }: CanvasScrubberProps) => {
         canvas.height = img.naturalHeight;
       }
 
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
       lastDrawnRef.current = useIdx;
     };
@@ -125,11 +134,44 @@ const CanvasScrubber = ({ registerCallback }: CanvasScrubberProps) => {
   return (
     <canvas
       ref={canvasRef}
-      className="h-full w-full rounded-[10px] bg-black/60 object-cover"
+      className="h-full w-full rounded-[10px] bg-black/60 object-cover [will-change:transform]"
       aria-hidden="true"
     />
   );
 };
+
+const softwareFeatures: CarouselItem[] = [
+  {
+    id: 1,
+    title: "IA de Pointe",
+    description: "Suppression d'arrière-plan instantanée grâce à nos algorithmes d'apprentissage profond ultra-précis.",
+    icon: <Image src="/icone/auto_awesome_motion_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" width={28} height={28} alt="IA" className="invert brightness-0" />,
+  },
+  {
+    id: 2,
+    title: "Traitement par Lots",
+    description: "Traitez des centaines d'images simultanément pour gagner un temps précieux sur vos projets.",
+    icon: <Image src="/icone/file_copy_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" width={28} height={28} alt="Lots" className="invert brightness-0" />,
+  },
+  {
+    id: 3,
+    title: "Exportation HD",
+    description: "Conservez chaque détail de vos images avec une exportation haute résolution sans perte de qualité.",
+    icon: <Image src="/icone/image_arrow_up_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" width={28} height={28} alt="Export" className="invert brightness-0" />,
+  },
+  {
+    id: 4,
+    title: "Performance Maximale",
+    description: "Optimisé pour la rapidité, obtenez vos résultats en moins d'une seconde par image.",
+    icon: <Image src="/icone/speed_2_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" width={28} height={28} alt="Speed" className="invert brightness-0" />,
+  },
+  {
+    id: 5,
+    title: "Remplacement Fond",
+    description: "Changez instantanément l'arrière-plan par une couleur unie ou une image personnalisée.",
+    icon: <Image src="/icone/background_replace_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" width={28} height={28} alt="Background" className="invert brightness-0" />,
+  }
+];
 
 export function HeroScrollDemo() {
   return (
@@ -145,15 +187,21 @@ export function HeroScrollDemo() {
       </ContainerScroll>
 
       {/* Section Carrousel */}
-      <div className="relative z-20 mx-auto flex w-full max-w-7xl justify-center px-4 pb-32 pt-10">
+      <div className="relative z-20 mx-auto flex w-full max-w-7xl flex-col items-center pb-32 pt-20">
+        <h2 className="mb-16 px-4 text-center text-4xl font-bold tracking-tighter sm:text-5xl md:text-7xl">
+          <span className="bg-gradient-to-b from-white to-white/40 bg-clip-text text-transparent">
+            Fonctionnalités
+          </span>
+        </h2>
+        
         <div style={{ height: '500px', position: 'relative', display: 'flex', justifyContent: 'center', width: '100%' }}>
           <Carousel
-            baseWidth={800}
+            items={softwareFeatures}
+            baseWidth={560}
             autoplay={true}
-            autoplayDelay={2000}
             pauseOnHover={true}
-            loop={true}
-            round={false}
+            stepDuration={2500}
+            moveDuration={400}
           />
         </div>
       </div>
