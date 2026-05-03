@@ -20,14 +20,14 @@ export function TimelineDemo() {
               alt="Import initial"
               width={500}
               height={300}
-              className="rounded-xl object-cover h-40 md:h-60 w-full shadow-lg border border-white/5"
+              className="rounded-xl object-contain w-full h-auto max-h-60 md:max-h-[350px] shadow-lg border border-white/5 bg-white/5"
             />
             <Image
               src="/images/steps/illu1.webp"
               alt="Illustration importation"
               width={500}
               height={300}
-              className="rounded-xl object-cover h-40 md:h-60 w-full shadow-lg border border-white/5"
+              className="rounded-xl object-contain w-full h-auto max-h-60 md:max-h-[350px] shadow-lg border border-white/5 bg-white/5"
             />
           </div>
         </div>
@@ -49,14 +49,14 @@ export function TimelineDemo() {
               alt="Traitement IA"
               width={500}
               height={300}
-              className="rounded-xl object-cover h-40 md:h-60 w-full shadow-lg border border-white/5"
+              className="rounded-xl object-contain w-full h-auto max-h-60 md:max-h-[350px] shadow-lg border border-white/5 bg-white/5"
             />
             <Image
               src="/images/steps/illu2.webp"
               alt="Illustration analyse"
               width={500}
               height={300}
-              className="rounded-xl object-cover h-40 md:h-60 w-full shadow-lg border border-white/5"
+              className="rounded-xl object-contain w-full h-auto max-h-60 md:max-h-[350px] shadow-lg border border-white/5 bg-white/5"
             />
           </div>
         </div>
@@ -86,14 +86,14 @@ export function TimelineDemo() {
               alt="Résultat final"
               width={500}
               height={300}
-              className="rounded-xl object-cover h-40 md:h-60 w-full shadow-lg border border-white/5"
+              className="rounded-xl object-contain w-full h-auto max-h-60 md:max-h-[350px] shadow-lg border border-white/5 bg-white/5"
             />
             <Image
               src="/images/steps/illu3.webp"
               alt="Options d'export"
               width={500}
               height={300}
-              className="rounded-xl object-cover h-40 md:h-60 w-full shadow-lg border border-white/5"
+              className="rounded-xl object-contain w-full h-auto max-h-60 md:max-h-[350px] shadow-lg border border-white/5 bg-white/5"
             />
           </div>
         </div>
