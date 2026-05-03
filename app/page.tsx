@@ -1,5 +1,6 @@
 import { HeroScrollDemo } from "@/components/sections/hero-scroll-demo";
 import { ShaderDemo } from "@/components/sections/shader-demo";
+import { TimelineLoader } from "@/components/sections/TimelineLoader";
 import { ThemeToggle } from "@/components/theme-toggle";
 import DotField from "@/components/ui/dot-field";
 import { NavbarLoader } from "@/components/Navbar/NavbarLoader";
@@ -22,7 +23,7 @@ export default function Home() {
           cursorForce={0.12}
           bulgeOnly
           bulgeStrength={4}
-          glowRadius={250}
+          glowRadius={0}
           sparkle={false}
           waveAmplitude={0}
           gradientFrom="#0033ff"
@@ -35,8 +36,12 @@ export default function Home() {
         <ShaderDemo />
       </div>
 
-      <div id="portfolio" className="relative z-20 -mt-[33vh] scroll-mt-28">
+      <div id="portfolio" className="relative z-20 -mt-[40vh] scroll-mt-28">
         <HeroScrollDemo />
+      </div>
+
+      <div className="relative z-30">
+        <TimelineLoader />
       </div>
 
       <div id="contact" className="relative z-20 h-px scroll-mt-28" />

@@ -2,10 +2,13 @@
 
 import { useEffect, useRef } from "react";
 
+import { motion } from "motion/react";
+
 const NAV_ITEMS = [
   { label: "Home",      href: "#home" },
   { label: "Services",  href: "#services" },
   { label: "Portfolio", href: "#portfolio" },
+  { label: "Comment ça marche", href: "#how-it-works" },
   { label: "Contact",   href: "#contact" },
 ];
 
@@ -88,12 +91,20 @@ export default function Navbar() {
       </svg>
 
       {/* Navbar */}
-      <nav
+      <motion.nav
+        initial={{ y: -100, opacity: 0, x: "-50%" }}
+        animate={{ y: 0, opacity: 1, x: "-50%" }}
+        transition={{ 
+          type: "spring", 
+          stiffness: 100, 
+          damping: 12, 
+          mass: 1,
+          delay: 1.2
+        }}
         style={{
           position: "fixed",
           top: "16px",
           left: "50%",
-          transform: "translateX(-50%)",
           zIndex: 1000,
           width: "min(680px, calc(100vw - 48px))",
           height: "52px",
@@ -196,7 +207,7 @@ export default function Navbar() {
             </button>
           ))}
         </div>
-      </nav>
+      </motion.nav>
     </>
   );
 }

@@ -34,29 +34,36 @@ export const ContainerScroll = ({
 
     if (!section || !card || !triggerBox) return;
 
-    // Configuration initiale de la carte en 3D
-    gsap.set(card, {
-      rotateX: 50,
-      scale: 0.88,
-      y: 80,
-      transformOrigin: "center top",
-    });
+    // Animation de réveil sur la SECTION entière (Douce, lente et visible)
+    gsap.fromTo(section, 
+      { opacity: 0, y: 80 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 3,
+        ease: "power3.out",
+        delay: 0.5,
+      }
+    );
 
-    // Phase 1 : Redressement fluide et pondéré
-    gsap.to(card, {
-      rotateX: 0,
-      scale: 1,
-      y: 0,
-      ease: "power2.out", 
-      force3D: true,
-      scrollTrigger: {
-        trigger: triggerBox,
-        start: "top bottom", 
-        end: "center center", 
-        scrub: 1, // Lissage pour une fluidité maximale
-        invalidateOnRefresh: true,
-      },
-    });
+    // Phase 1 : Redressement fluide (Scroll) sur la CARTE
+    gsap.fromTo(card, 
+      { rotateX: 50, scale: 0.88, y: 0 },
+      {
+        rotateX: 0,
+        scale: 1,
+        y: 0,
+        ease: "power2.out", 
+        force3D: true,
+        scrollTrigger: {
+          trigger: triggerBox,
+          start: "top bottom", 
+          end: "center center", 
+          scrub: 1,
+          invalidateOnRefresh: true,
+        },
+      }
+    );
 
     // Phase 2 : Pin de l'écran avec proxy de progression lissé
     const progressProxy = { value: 0 };
@@ -103,7 +110,7 @@ export const ContainerScroll = ({
   return (
     <div
       ref={sectionRef}
-      className="relative flex w-full h-[45rem] items-center justify-center overflow-x-clip px-4 md:h-[65rem] md:px-10"
+      className="relative flex w-full h-[45rem] items-center justify-center overflow-x-clip px-4 md:h-[65rem] md:px-10 opacity-0"
     >
       <div
         className="relative mx-auto w-full max-w-[1800px] py-0 md:py-8"
@@ -116,9 +123,8 @@ export const ContainerScroll = ({
         <div ref={triggerRef} className="mx-auto -mt-28 w-[85%] max-w-6xl aspect-[16/10] md:-mt-36" style={{ transformStyle: "preserve-3d" }}>
           <div
             ref={cardRef}
-            className="h-full w-full rounded-[30px] bg-card/70 p-2 shadow-2xl backdrop-blur md:p-6"
+            className="h-full w-full rounded-[30px] bg-card/70 p-2 backdrop-blur md:p-6 border border-white/10"
             style={{
-              boxShadow: "0 16px 50px hsl(var(--foreground) / 0.18)",
               transformStyle: "preserve-3d",
               willChange: "transform",
             }}

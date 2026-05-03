@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, memo } from 'react';
+import { useEffect, useRef, memo, useId } from 'react';
 
 import './dot-field.css';
 
@@ -49,7 +49,8 @@ const DotField = memo(({
   const propsRef = useRef<any>({});
   propsRef.current = { dotRadius, dotSpacing, cursorRadius, cursorForce, bulgeOnly, bulgeStrength, sparkle, waveAmplitude, gradientFrom, gradientTo };
   const rebuildRef = useRef<(() => void) | null>(null);
-  const glowIdRef = useRef(`dot-field-glow-${Math.random().toString(36).slice(2, 9)}`);
+  const stableId = useId();
+  const glowIdRef = useRef(`dot-field-glow-${stableId.replace(/:/g, '')}`);
 
   useEffect(() => {
     const canvas = canvasRef.current;
