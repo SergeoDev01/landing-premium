@@ -79,7 +79,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
               height: heightTransform,
               opacity: opacityTransform,
             }}
-            className="absolute inset-x-0 top-0 w-[2px] bg-red-500 rounded-full"
+            className="absolute inset-x-0 top-0 w-[2px] bg-[#0033ff] rounded-full"
           />
         </div>
       </div>

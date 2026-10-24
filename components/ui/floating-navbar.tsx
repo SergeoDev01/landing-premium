@@ -83,7 +83,7 @@ export const FloatingNav = ({
           </div>
 
           {/* Outer Glass Border with Rainbow Glint */}
-          <div className="absolute -inset-[0.5px] rounded-[2rem] border-[0.5px] border-white/30 dark:border-white/20 pointer-events-none" />
+          <div className="absolute -inset-[0.5px] rounded-[2rem] border-[0.5px] border-white/20 pointer-events-none" />
 
           {/* Content Container */}
           <div className="relative flex items-center justify-between gap-6 px-4 py-4 sm:px-8">
@@ -94,7 +94,7 @@ export const FloatingNav = ({
                   href={navItem.link}
                   className={cn(
                     "relative flex items-center gap-2.5 px-2 py-2 text-sm font-semibold tracking-wide transition-all duration-500",
-                    "text-neutral-700/80 hover:text-black dark:text-neutral-200/80 dark:hover:text-white"
+                    "text-neutral-200/80 hover:text-white"
                   )}
                 >
                   <span className="block sm:hidden text-lg">{navItem.icon}</span>
@@ -115,12 +115,12 @@ export const FloatingNav = ({
             {/* Premium 3D Liquid Button */}
             <button className="relative group/btn px-8 py-3 rounded-2xl overflow-hidden transition-all duration-300 active:scale-95 shadow-[0_10px_20px_-5px_rgba(0,0,0,0.3)]">
               {/* Button Glass Background */}
-              <div className="absolute inset-0 bg-neutral-950 dark:bg-white transition-colors duration-300" />
+              <div className="absolute inset-0 bg-white transition-colors duration-300" />
               
               {/* Rainbow Shine over button */}
               <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/0 via-white/10 to-purple-500/0 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500 rotate-12 scale-150" />
               
-              <span className="relative z-10 text-white dark:text-black font-bold text-sm uppercase tracking-tighter">
+              <span className="relative z-10 text-black font-bold text-sm uppercase tracking-tighter">
                 Access
               </span>
               

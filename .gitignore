@@ -42,3 +42,4 @@ next-env.d.ts
 
 # codex AI screenshots
 .codex-*.png
+.gstack/
